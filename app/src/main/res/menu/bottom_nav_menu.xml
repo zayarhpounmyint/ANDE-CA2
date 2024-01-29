@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/Home" />
+
+    <item
+        android:id="@+id/menu_transport"
+        android:icon="@drawable/ic_transport"
+        android:title="@string/Transport"
+        android:visible="true" />
+
+    <item
+        android:id="@+id/menu_trip"
+        android:title="@string/Trip"
+        android:icon="@drawable/ic_trip" />
+
+    <item
+        android:id="@+id/menu_translate"
+        android:title="@string/Translate"
+        android:icon="@drawable/ic_translate" />
+
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/Profile"
+        android:icon="@drawable/ic_profile" />
+</menu>

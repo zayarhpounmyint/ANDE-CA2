@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GoTravel</string>
+    <string name="Home">Home</string>
+    <string name="Transport">Transport</string>
+    <string name="Trip">Trip</string>
+    <string name="Translate">Translate</string>
+    <string name="Profile">Profile</string>
+</resources>

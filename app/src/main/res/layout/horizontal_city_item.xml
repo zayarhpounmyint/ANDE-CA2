@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+<RelativeLayout
+android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+<ImageView
+android:id="@+id/horizontal_item_image"
+android:layout_width="match_parent"
+    android:layout_height="122dp"
+    android:scaleType="centerCrop" />
+
+<TextView
+android:id="@+id/horizontal_item_title"
+android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/horizontal_item_image"
+    android:textSize="16sp"
+    android:textStyle="bold" />
+
+<TextView
+android:id="@+id/horizontal_item_description"
+android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/horizontal_item_title"
+    android:textSize="14sp" />
+
+<ImageButton
+android:id="@+id/horizontal_item_button"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentEnd="true"
+android:layout_alignParentBottom="true"
+android:background="?attr/selectableItemBackgroundBorderless"
+    android:src="@drawable/arrow" />
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
