@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "AttractionApp";
+    //attractions
     private static final String TABLE_ATTRACTIONS = "attractions";
     private static final String KEY_ID = "id";
     private static final String KEY_CATEGORY = "category";
@@ -24,13 +25,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_DISTANCE = "distance";
     private static final String KEY_WEBSITE = "website";
 
-    // Constants for the cities table
+    // cities
     private static final String TABLE_CITIES = "cities";
     private static final String KEY_CITY_ID = "id";
     private static final String KEY_CITY_TITLE = "title";
     private static final String KEY_CITY_IMAGE = "imageResource";
     private static final String KEY_CITY_DESCRIPTION = "description";
     private static final String KEY_CITY_CATEGORY = "category";
+
+    // comments
+    private static final String TABLE_COMMENTS = "comments";
+    private static final String KEY_COMMENT_ID = "id";
+    private static final String KEY_COMMENT_ATTRACTION_ID = "attraction_id";
+    private static final String KEY_COMMENT_COMMENT = "comment";
 
 
     public DatabaseHandler(Context context) {
@@ -57,6 +64,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_CITY_CATEGORY + " TEXT" + ")";
         db.execSQL(CREATE_CITIES_TABLE);
         Log.d("test",CREATE_CITIES_TABLE);
+
+        String CREATE_COMMENTS_TABLE = "CREATE TABLE " + TABLE_COMMENTS + "("
+                + KEY_COMMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_COMMENT_ATTRACTION_ID + " INTEGER,"
+                + KEY_COMMENT_COMMENT + " TEXT,"
+                + "FOREIGN KEY(" + KEY_COMMENT_ATTRACTION_ID + ") REFERENCES "
+                + TABLE_ATTRACTIONS + "(" + KEY_ID + "))";
+        db.execSQL(CREATE_COMMENTS_TABLE);
     }
 
     // Upgrading database
@@ -337,6 +352,39 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
 
         return count;
+    }
+
+    // Method to add a new comment
+    public void addComment(Comment comment) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_COMMENT_ATTRACTION_ID, comment.getAttractionId());
+        values.put(KEY_COMMENT_COMMENT, comment.getComment());
+
+        db.insert(TABLE_COMMENTS, null, values);
+        db.close();
+    }
+
+    // Method to get all comments for a specific attraction
+    public List<Comment> getCommentsForAttraction(int attractionId) {
+        List<Comment> comments = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_COMMENTS, new String[] { KEY_COMMENT_ID, KEY_COMMENT_ATTRACTION_ID, KEY_COMMENT_COMMENT },
+                KEY_COMMENT_ATTRACTION_ID + "=?", new String[] { String.valueOf(attractionId) }, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Comment comment = new Comment(
+                        cursor.getInt(0), // Comment ID
+                        cursor.getInt(1), // Attraction ID
+                        cursor.getString(2) // Comment
+                );
+                comments.add(comment);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return comments;
     }
 
 }

@@ -2,15 +2,23 @@ package com.example.helloworld;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 
 public class AttractionDetailsActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerViewComments;
+    private CommentAdapter commentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +78,7 @@ public class AttractionDetailsActivity extends AppCompatActivity {
 
         TextView textDetailsWebsite = findViewById(R.id.textDetailsWebsite);
         textDetailsWebsite.setText(website);
-        
+
 
         //add to list button
         Button addToListBtn = findViewById(R.id.addToListBtn);
@@ -83,6 +91,49 @@ public class AttractionDetailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(AttractionDetailsActivity.this, addToPlanActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
+            }
+        });
+
+        int attractionId = intent.getIntExtra("id", 0);
+
+        // Get the EditText and Button from the layout
+        EditText commentInput = findViewById(R.id.commentInput);
+        Button commentButton = findViewById(R.id.commentBtn);
+
+        recyclerViewComments = findViewById(R.id.recyclerViewComments);
+        recyclerViewComments.setLayoutManager(new LinearLayoutManager(this));
+
+
+        List<Comment> comments = db.getCommentsForAttraction(attractionId); // Make sure this method is implemented in your DatabaseHandler
+
+        commentAdapter = new CommentAdapter(comments);
+        recyclerViewComments.setAdapter(commentAdapter);
+
+        // Set OnClickListener for the comment button
+        commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Retrieve the comment text from the EditText
+                String commentText = commentInput.getText().toString();
+
+                // Check if the comment is not empty
+                if (!commentText.isEmpty()) {
+                    // Create a Comment object
+                    Comment comment = new Comment();
+                    comment.setAttractionId(attractionId);
+                    comment.setComment(commentText);
+
+                    // Save the comment to the database
+                    DatabaseHandler db = new DatabaseHandler(AttractionDetailsActivity.this);
+                    db.addComment(comment);
+
+                    // Optionally clear the EditText or provide feedback to the user
+                    commentInput.setText("");
+                    // Display a toast message, etc.
+                } else {
+                    // Handle the case where the comment is empty
+                    // E.g., display a Toast message to the user
+                }
             }
         });
     }

@@ -28,6 +28,7 @@ public class addToPlanActivity extends AppCompatActivity {
         DatabaseHandler db = new DatabaseHandler(this);
         Attraction attractionAdded = db.getAttraction(id);
         String title = attractionAdded.getTitle();
+        String category = attractionAdded.getCategory();
         String location = attractionAdded.getLocation();
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
