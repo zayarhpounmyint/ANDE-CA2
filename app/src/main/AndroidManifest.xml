@@ -31,6 +31,7 @@
         <activity android:name=".AttractionActivity" />
         <activity android:name=".AttractionDetailsActivity" />
         <activity android:name=".addToPlanActivity" />
+        <activity android:name=".StationActivity" />
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
 
