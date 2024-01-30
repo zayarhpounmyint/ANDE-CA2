@@ -29,6 +29,7 @@
         <activity android:name=".AttractionActivity" />
         <activity android:name=".AttractionDetailsActivity" />
         <activity android:name=".addToPlanActivity" />
+        <activity android:name=".StationActivity" />
     </application>
 
 </manifest>
