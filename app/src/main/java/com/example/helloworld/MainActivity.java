@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,27 @@ public class MainActivity extends AppCompatActivity {
         recommendBtn.setVisibility(View.GONE);
         searchInput.setVisibility(View.GONE);
         searchButton.setVisibility(View.GONE);
+
+        findViewById(R.id.topPlacesText).setVisibility(View.GONE);
+        findViewById(R.id.headerTxt).setVisibility(View.GONE);
+
     }
+
+    private void showAllElements() {
+        horizontalRecyclerView.setVisibility(View.VISIBLE);
+        verticalRecyclerView.setVisibility(View.VISIBLE);
+        allBtn.setVisibility(View.VISIBLE);
+        popularBtn.setVisibility(View.VISIBLE);
+        nearbyBtn.setVisibility(View.VISIBLE);
+        recommendBtn.setVisibility(View.VISIBLE);
+        searchInput.setVisibility(View.VISIBLE);
+        searchButton.setVisibility(View.VISIBLE);
+
+        // Show additional TextViews
+        findViewById(R.id.topPlacesText).setVisibility(View.VISIBLE);
+        findViewById(R.id.headerTxt).setVisibility(View.VISIBLE);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,9 +163,8 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.menu_home:
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragment_container, new TranslationFragment())
-                                        .commit();
+                                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(intent);
 
                                 return true;
                             case R.id.menu_transport:
@@ -165,8 +185,13 @@ public class MainActivity extends AppCompatActivity {
                                 hideOtherElements();
                                 return true;
                             case R.id.menu_profile:
-                                // Handle the Profile item click
-                                // Example: switchFragment(new ProfileFragment());
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, new ProfileFragment())
+                                        .commit();
+
+                                // Hide other elements
+                                hideOtherElements();
+
                                 return true;
                         }
                         return false;

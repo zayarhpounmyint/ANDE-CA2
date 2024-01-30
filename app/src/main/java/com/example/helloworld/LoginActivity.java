@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -75,10 +76,19 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
+
+                                    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    String userId = firebaseUser.getUid();
                                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+                                    // Save user ID when logged in
+                                    sessionManager.saveUserId(userId);
+
                                     startActivity(intent);
-                                    finish();
+
                                 }
                                 else {
                                     // If sign in fails, display a message to the user.
