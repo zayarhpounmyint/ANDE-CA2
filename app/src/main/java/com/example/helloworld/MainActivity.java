@@ -1,5 +1,6 @@
 package com.example.helloworld;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,10 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
 
@@ -31,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
     private Button recommendBtn;
     private EditText searchInput;
     private ImageButton searchButton;
+    private BottomNavigationView bottomNavigationView;
+
+    private void hideOtherElements() {
+        horizontalRecyclerView.setVisibility(View.GONE);
+        verticalRecyclerView.setVisibility(View.GONE);
+        allBtn.setVisibility(View.GONE);
+        popularBtn.setVisibility(View.GONE);
+        nearbyBtn.setVisibility(View.GONE);
+        recommendBtn.setVisibility(View.GONE);
+        searchInput.setVisibility(View.GONE);
+        searchButton.setVisibility(View.GONE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +131,48 @@ public class MainActivity extends AppCompatActivity {
                 horizontalAdapter.setNewItems(db.getCitiesByCategory("Recommended"));
             }
         });
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setSelectedItemId(R.id.menu_home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.menu_home:
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, new TranslationFragment())
+                                        .commit();
+
+                                return true;
+                            case R.id.menu_transport:
+                                // Handle the Transport item click
+                                // Example: switchFragment(new TransportFragment());
+                                return true;
+                            case R.id.menu_trip:
+                                // Handle the Trip item click
+                                // Example: switchFragment(new TripFragment());
+                                return true;
+                            case R.id.menu_translate:
+                                // Replace the current fragment with TranslationFragment
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, new TranslationFragment())
+                                        .commit();
+
+                                // Hide other elements
+                                hideOtherElements();
+                                return true;
+                            case R.id.menu_profile:
+                                // Handle the Profile item click
+                                // Example: switchFragment(new ProfileFragment());
+                                return true;
+                        }
+                        return false;
+                    }
+                }
+        );
     }
 
     public void initializeCityData() {
