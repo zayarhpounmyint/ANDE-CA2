@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TranslationFragment">
+
+    <Spinner
+        android:id="@+id/spinnerSourceLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:entries="@array/languages" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTxtletters"
+        android:layout_below="@+id/spinnerSourceLanguage"
+        android:hint="Enter a text" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Translate"
+        android:id="@+id/btnTranslate"/>
+
+    <Spinner
+        android:id="@+id/spinnerTargetLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTxtletters"
+        android:layout_marginTop="16dp"
+        android:entries="@array/languages" />
+
+    <EditText
+        android:id="@+id/editTxtTranslated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnTranslate"
+        android:hint="Translated text will appear here"
+        android:enabled="false" />
+</LinearLayout>

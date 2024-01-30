@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "939830221907",
+    "project_id": "go-travel-e20ce",
+    "storage_bucket": "go-travel-e20ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939830221907:android:a7ac8fe0b83a59f2997aa6",
+        "android_client_info": {
+          "package_name": "com.example.helloworld"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoiUhcDwzki_GHX4pMGQSZnh60FblbHcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
