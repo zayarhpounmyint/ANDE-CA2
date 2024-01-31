@@ -24,7 +24,7 @@ public class AttractionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.attractions);
+        setContentView(R.layout.attractions_activity);
 
         Button backButton = findViewById(R.id.backBtn);
 

@@ -21,7 +21,7 @@ public class StationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bus);
+        setContentView(R.layout.transport_activity);
 
         // Initialize the RecyclerView with data
         recyclerView = findViewById(R.id.recyclerView);

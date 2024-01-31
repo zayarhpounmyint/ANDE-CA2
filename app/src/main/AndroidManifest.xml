@@ -30,8 +30,9 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".AttractionActivity" />
         <activity android:name=".AttractionDetailsActivity" />
-        <activity android:name=".addToPlanActivity" />
+        <activity android:name=".AddToPlanActivity" />
         <activity android:name=".StationActivity" />
+        <activity android:name=".CommentActivity" />
         <activity android:name=".LoginActivity"/>
         <activity android:name=".RegisterActivity"/>
 

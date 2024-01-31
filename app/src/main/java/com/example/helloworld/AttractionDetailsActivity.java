@@ -2,17 +2,13 @@ package com.example.helloworld;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.Button;
-
-import java.util.List;
 
 
 public class AttractionDetailsActivity extends AppCompatActivity {
@@ -23,7 +19,7 @@ public class AttractionDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.attraction_details);
+        setContentView(R.layout.attraction_details_activity);
 
         Button backButton = findViewById(R.id.backBtn);
 
@@ -41,13 +37,7 @@ public class AttractionDetailsActivity extends AppCompatActivity {
         // Get data from the intent
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
-//        int image = intent.getIntExtra("Image",0);
-//        String title = intent.getStringExtra("Title");
-//        String desc = intent.getStringExtra("Description");
-//        Double rating = intent.getDoubleExtra("Rating",0);
-//        String location = intent.getStringExtra("Location");
-//        String distance = intent.getStringExtra("Distance");
-//        String website = intent.getStringExtra("Website");
+
 
         DatabaseHandler db = new DatabaseHandler(this);
         Attraction attractionDetails = db.getAttraction(id);
@@ -88,7 +78,7 @@ public class AttractionDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create an Intent to start NewActivity
-                Intent intent = new Intent(AttractionDetailsActivity.this, addToPlanActivity.class);
+                Intent intent = new Intent(AttractionDetailsActivity.this, AddToPlanActivity.class);
                 intent.putExtra("id", id);
                 startActivity(intent);
             }
@@ -97,44 +87,15 @@ public class AttractionDetailsActivity extends AppCompatActivity {
         int attractionId = intent.getIntExtra("id", 0);
 
         // Get the EditText and Button from the layout
-        EditText commentInput = findViewById(R.id.commentInput);
         Button commentButton = findViewById(R.id.commentBtn);
 
-        recyclerViewComments = findViewById(R.id.recyclerViewComments);
-        recyclerViewComments.setLayoutManager(new LinearLayoutManager(this));
-
-
-        List<Comment> comments = db.getCommentsForAttraction(attractionId); // Make sure this method is implemented in your DatabaseHandler
-
-        commentAdapter = new CommentAdapter(comments);
-        recyclerViewComments.setAdapter(commentAdapter);
 
         // Set OnClickListener for the comment button
-        commentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Retrieve the comment text from the EditText
-                String commentText = commentInput.getText().toString();
-
-                // Check if the comment is not empty
-                if (!commentText.isEmpty()) {
-                    // Create a Comment object
-                    Comment comment = new Comment();
-                    comment.setAttractionId(attractionId);
-                    comment.setComment(commentText);
-
-                    // Save the comment to the database
-                    DatabaseHandler db = new DatabaseHandler(AttractionDetailsActivity.this);
-                    db.addComment(comment);
-
-                    // Optionally clear the EditText or provide feedback to the user
-                    commentInput.setText("");
-                    // Display a toast message, etc.
-                } else {
-                    // Handle the case where the comment is empty
-                    // E.g., display a Toast message to the user
-                }
-            }
+        commentButton.setOnClickListener(v -> {
+            Intent intent1 = new Intent(AttractionDetailsActivity.this, CommentActivity.class);
+            intent1.putExtra("id", attractionId);
+            startActivity(intent1);
         });
+
     }
 }
