@@ -37,6 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String TABLE_COMMENTS = "comments";
     private static final String KEY_COMMENT_ID = "id";
     private static final String KEY_COMMENT_ATTRACTION_ID = "attraction_id";
+    private static final String KEY_COMMENT_USERNAME = "username";
     private static final String KEY_COMMENT_COMMENT = "comment";
 
 
@@ -63,16 +64,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_CITY_DESCRIPTION + " TEXT,"
                 + KEY_CITY_CATEGORY + " TEXT" + ")";
         db.execSQL(CREATE_CITIES_TABLE);
-        Log.d("test",CREATE_CITIES_TABLE);
+
 
         String CREATE_COMMENTS_TABLE = "CREATE TABLE " + TABLE_COMMENTS + "("
                 + KEY_COMMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_COMMENT_ATTRACTION_ID + " INTEGER,"
+                + KEY_COMMENT_USERNAME + " TEXT,"
                 + KEY_COMMENT_COMMENT + " TEXT,"
                 + "FOREIGN KEY(" + KEY_COMMENT_ATTRACTION_ID + ") REFERENCES "
                 + TABLE_ATTRACTIONS + "(" + KEY_ID + "))";
         db.execSQL(CREATE_COMMENTS_TABLE);
     }
+
 
     // Upgrading database
     @Override
@@ -359,6 +362,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_COMMENT_ATTRACTION_ID, comment.getAttractionId());
+        values.put(KEY_COMMENT_USERNAME, comment.getUsername());
         values.put(KEY_COMMENT_COMMENT, comment.getComment());
 
         db.insert(TABLE_COMMENTS, null, values);
@@ -370,15 +374,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<Comment> comments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_COMMENTS, new String[] { KEY_COMMENT_ID, KEY_COMMENT_ATTRACTION_ID, KEY_COMMENT_COMMENT },
+        Cursor cursor = db.query(TABLE_COMMENTS, new String[] {
+                        KEY_COMMENT_ID, KEY_COMMENT_ATTRACTION_ID, KEY_COMMENT_USERNAME, KEY_COMMENT_COMMENT },
                 KEY_COMMENT_ATTRACTION_ID + "=?", new String[] { String.valueOf(attractionId) }, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
                 Comment comment = new Comment(
-                        cursor.getInt(0), // Comment ID
-                        cursor.getInt(1), // Attraction ID
-                        cursor.getString(2) // Comment
+                        cursor.getInt(cursor.getColumnIndex(KEY_COMMENT_ID)), // Comment ID
+                        cursor.getInt(cursor.getColumnIndex(KEY_COMMENT_ATTRACTION_ID)), // Attraction ID
+                        cursor.getString(cursor.getColumnIndex(KEY_COMMENT_USERNAME)), // Username
+                        cursor.getString(cursor.getColumnIndex(KEY_COMMENT_COMMENT)) // Comment
                 );
                 comments.add(comment);
             } while (cursor.moveToNext());

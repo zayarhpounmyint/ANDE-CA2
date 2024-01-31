@@ -4,12 +4,20 @@ public class Comment {
 
     private int id;
     private int attractionId;
+    private String username;
     private String comment;
 
-    // Constructor
-    public Comment(int id, int attractionId, String comment) {
+    // Constructors
+    public Comment(int attractionId, String username, String comment) {
+        this.attractionId = attractionId;
+        this.username = username;
+        this.comment = comment;
+    }
+
+    public Comment(int id, int attractionId, String username, String comment) {
         this.id = id;
         this.attractionId = attractionId;
+        this.username = username;
         this.comment = comment;
     }
 
@@ -32,6 +40,10 @@ public class Comment {
 
     public void setAttractionId(int attractionId) {
         this.attractionId = attractionId;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getComment() {

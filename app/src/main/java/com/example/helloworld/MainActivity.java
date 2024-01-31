@@ -168,8 +168,12 @@ public class MainActivity extends AppCompatActivity {
 
                                 return true;
                             case R.id.menu_transport:
-                                // Handle the Transport item click
-                                // Example: switchFragment(new TransportFragment());
+                                getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.fragment_container, new StationFragment())
+                                        .commit();
+
+                                // Hide other elements
+                                hideOtherElements();
                                 return true;
                             case R.id.menu_trip:
                                 // Handle the Trip item click
