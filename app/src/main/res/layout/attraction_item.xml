@@ -11,14 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/paris" />
+        android:src="@drawable/ramen" />
 
     <TextView
         android:id="@+id/textTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Item Title"
-        android:textSize="18sp"
+        android:textSize="24dp"
         android:textStyle="bold"
         android:layout_marginTop="8dp" />
 
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:layout_marginTop="8dp" />
 

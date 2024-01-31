@@ -33,7 +33,7 @@ public class VerticalCityAdapter extends RecyclerView.Adapter<VerticalCityAdapte
         holder.titleTextView.setText(item.getTitle());
         holder.descriptionTextView.setText(item.getDescription());
         holder.infoButton.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), StationActivity.class);
+            Intent intent = new Intent(v.getContext(), AttractionActivity.class);
             v.getContext().startActivity(intent);
         });
     }

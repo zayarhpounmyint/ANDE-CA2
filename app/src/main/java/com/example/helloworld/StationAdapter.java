@@ -29,22 +29,6 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
     public void onBindViewHolder(@NonNull StationViewHolder holder, int position) {
         Station station = stationList.get(position);
         holder.bind(station);
-
-        holder.stationName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isExpanded = holder.detailsLayout.getVisibility() == View.VISIBLE;
-                holder.detailsLayout.setVisibility(isExpanded ? View.GONE : View.VISIBLE);
-                // Adjust arrow indicator here if you have one
-            }
-        });
-    }
-
-
-    // Method to update the data in the adapter
-    public void updateData(List<Station> newStationList) {
-        this.stationList = newStationList;
-        notifyDataSetChanged(); // Notify the adapter to refresh the list
     }
 
     @Override
@@ -52,43 +36,48 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
         return stationList.size();
     }
 
+    public void updateData(List<Station> newStationList) {
+        this.stationList = newStationList;
+        notifyDataSetChanged();
+    }
+
     public class StationViewHolder extends RecyclerView.ViewHolder {
         TextView stationName;
-        TextView stationDistance;
-        ImageView imageView1, imageView2, imageView3;
-        LinearLayout detailsLayout;
+        ImageView[] imageViews = new ImageView[3];
+        TextView[] distanceViews = new TextView[3];
+        LinearLayout detailsLayout; // This will contain the images and distances
 
         public StationViewHolder(View itemView) {
             super(itemView);
             stationName = itemView.findViewById(R.id.textViewStationName);
-            stationDistance = itemView.findViewById(R.id.textViewStationDistance);
-            imageView1 = itemView.findViewById(R.id.imageView1);
-            imageView2 = itemView.findViewById(R.id.imageView2);
-            imageView3 = itemView.findViewById(R.id.imageView3);
-            detailsLayout = itemView.findViewById(R.id.detailsLayout);
+            detailsLayout = itemView.findViewById(R.id.detailsLayout); // Layout to toggle visibility
+            imageViews[0] = itemView.findViewById(R.id.imageView1);
+            imageViews[1] = itemView.findViewById(R.id.imageView2);
+            imageViews[2] = itemView.findViewById(R.id.imageView3);
+            distanceViews[0] = itemView.findViewById(R.id.textViewDistance1);
+            distanceViews[1] = itemView.findViewById(R.id.textViewDistance2);
+            distanceViews[2] = itemView.findViewById(R.id.textViewDistance3);
 
-            // Set an OnClickListener to toggle the visibility of the detailsLayout
-            stationName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Toggle visibility of detailsLayout
-                    detailsLayout.setVisibility(detailsLayout.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-                    // Change the arrow drawable based on the visibility
-                    // Assuming you have an arrow indicator in your layout
-                    // You can set or change the drawable of the arrow here if needed
-                }
+            stationName.setOnClickListener(v -> {
+                // Toggle the visibility of the detailsLayout
+                detailsLayout.setVisibility(detailsLayout.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
             });
         }
 
         public void bind(Station station) {
             stationName.setText(station.getName());
-            stationDistance.setText(String.join(", ", station.getTimes()));
 
-            // Here you would set the images for the ImageViews based on the station data
-            // For example, you might have different images for different types of buses or trains
-            imageView1.setImageResource(station.getImageResourceId()); // Placeholder for actual image setting logic
-            imageView2.setImageResource(station.getImageResourceId()); // Placeholder for actual image setting logic
-            imageView3.setImageResource(station.getImageResourceId()); // Placeholder for actual image setting logic
+            List<Integer> imageResourceIds = station.getImageResourceIds();
+            List<String> times = station.getTimes();
+
+            for (int i = 0; i < imageViews.length; i++) {
+                if (i < imageResourceIds.size()) {
+                    imageViews[i].setImageResource(imageResourceIds.get(i));
+                }
+                if (i < times.size()) {
+                    distanceViews[i].setText(times.get(i));
+                }
+            }
         }
     }
 }

@@ -3,9 +3,9 @@ package com.example.helloworld;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +13,6 @@ import android.widget.Button;
 
 public class AttractionDetailsActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerViewComments;
-    private CommentAdapter commentAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +58,14 @@ public class AttractionDetailsActivity extends AppCompatActivity {
         TextView textDetailsDesc = findViewById(R.id.textDetailsDesc);
         textDetailsDesc.setText(desc);
 
-        TextView textDetailsRating = findViewById(R.id.textDetailsRating);
-        textDetailsRating.setText(rating.toString());
+        // Find the RatingBar view
+        RatingBar ratingBar = findViewById(R.id.ratingBar);
+
+        // Get the rating from your attractionDetails object
+        float starRating = rating.floatValue(); // Convert the Double rating to float
+
+        // Set the rating to the RatingBar
+        ratingBar.setRating(starRating);
 
         TextView textDetailsLocation = findViewById(R.id.textDetailsLocation);
         textDetailsLocation.setText(location);
@@ -71,7 +75,7 @@ public class AttractionDetailsActivity extends AppCompatActivity {
 
 
         //add to list button
-        Button addToListBtn = findViewById(R.id.addToListBtn);
+        Button addToListBtn = findViewById(R.id.addToPlanBtn);
 
         // Set OnClickListener to the button
         addToListBtn.setOnClickListener(new View.OnClickListener() {

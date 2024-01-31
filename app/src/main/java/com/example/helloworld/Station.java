@@ -4,12 +4,12 @@ import java.util.List;
 
 public class Station {
     private String name;
-    private int imageResourceId; // Drawable resource ID for the image
+    private List<Integer> imageResourceIds;
     private List<String> arrivalTimes;
 
-    public Station(String name, int imageResourceId, List<String> times) {
+    public Station(String name, List<Integer> imageResourceIds, List<String> times) {
         this.name = name;
-        this.imageResourceId = imageResourceId;
+        this.imageResourceIds = imageResourceIds;
         this.arrivalTimes = times;
     }
 
@@ -21,7 +21,7 @@ public class Station {
         return arrivalTimes;
     }
 
-    public int getImageResourceId() {
-        return imageResourceId;
+    public List<Integer> getImageResourceIds() {
+        return imageResourceIds;
     }
 }

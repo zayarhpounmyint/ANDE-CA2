@@ -61,16 +61,16 @@ public class StationFragment extends Fragment {
 
     private List<Station> createBusStationData() {
         List<Station> stations = new ArrayList<>();
-        stations.add(new Station("Central Bus Station", R.drawable.bus, Arrays.asList("3 min", "7 min", "14 min")));
-        stations.add(new Station("Downtown Bus Hub", R.drawable.bus, Arrays.asList("6 min", "12 min", "24 min")));
+        stations.add(new Station("Central Bus Station", Arrays.asList(R.drawable.bus, R.drawable.double_decker_bus, R.drawable.bus), Arrays.asList("3 min", "7 min", "14 min")));
+        stations.add(new Station("Downtown Bus Hub", Arrays.asList(R.drawable.bus, R.drawable.bus, R.drawable.double_decker_bus), Arrays.asList("6 min", "12 min", "24 min")));
         return stations;
     }
 
     // Helper method to create dummy train station data
     private List<Station> createTrainStationData() {
         List<Station> stations = new ArrayList<>();
-        stations.add(new Station("Tokyo Station", R.drawable.train, Arrays.asList("5 min", "10 min", "15 min")));
-        stations.add(new Station("Shibuya Station", R.drawable.train, Arrays.asList("2 min", "8 min", "12 min")));
+        stations.add(new Station("Tokyo Station", Arrays.asList(R.drawable.train, R.drawable.bullet_train, R.drawable.train), Arrays.asList("5 min", "10 min", "15 min")));
+        stations.add(new Station("Shibuya Station", Arrays.asList(R.drawable.bullet_train, R.drawable.train, R.drawable.train), Arrays.asList("2 min", "8 min", "12 min")));
         return stations;
     }
 }
