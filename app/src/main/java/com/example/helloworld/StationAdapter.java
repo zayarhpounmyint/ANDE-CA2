@@ -45,7 +45,7 @@ public class StationAdapter extends RecyclerView.Adapter<StationAdapter.StationV
         TextView stationName;
         ImageView[] imageViews = new ImageView[3];
         TextView[] distanceViews = new TextView[3];
-        LinearLayout detailsLayout; // This will contain the images and distances
+        LinearLayout detailsLayout; // Contains the images and distances
 
         public StationViewHolder(View itemView) {
             super(itemView);

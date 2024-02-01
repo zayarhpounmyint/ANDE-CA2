@@ -21,7 +21,7 @@ public class StationFragment extends Fragment {
     private List<Station> trainStations;
 
     public StationFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -38,11 +38,11 @@ public class StationFragment extends Fragment {
         busStations = createBusStationData();
         trainStations = createTrainStationData();
 
-        // Start with displaying train data by default
+        // Display bus data by default
         adapter = new StationAdapter(busStations);
         recyclerView.setAdapter(adapter);
 
-        // Set up button click listeners to switch between Bus and Train views
+        // Button click listeners to switch between Bus and Train views
         Button busNav = view.findViewById(R.id.busNav);
         Button trainNav = view.findViewById(R.id.trainNav);
         busNav.setOnClickListener(v -> showBusView());

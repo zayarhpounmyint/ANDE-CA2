@@ -21,10 +21,6 @@ public class Comment {
         this.comment = comment;
     }
 
-    // Empty constructor in case you need to instantiate Comment object without setting fields initially
-    public Comment() {
-    }
-
     // Getters and setters
     public int getId() {
         return id;

@@ -34,7 +34,7 @@ public class AttractionAdapter extends RecyclerView.Adapter<AttractionAdapter.Vi
         holder.textTitle.setText(item.getTitle());
         holder.textDescription.setText(item.getDescription());
 
-        // Set click listener for the "View Details" button
+        // Set click listener for the View Details button
         holder.btnViewDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

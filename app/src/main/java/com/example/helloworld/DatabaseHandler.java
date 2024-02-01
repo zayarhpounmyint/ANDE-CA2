@@ -223,12 +223,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return count;
     }
 
-    public void clearAllData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_ATTRACTIONS, null, null);
-        db.close();
-    }
-
     public List<Attraction> searchAttractionsByTitle(String title) {
         List<Attraction> attractionList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -296,7 +290,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cityList;
     }
 
-    // Method to get all cities by category
+    // Method to get cities by category
     public List<City> getCitiesByCategory(String category) {
         List<City> cityList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -369,7 +363,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    // Method to get all comments for a specific attraction
+    // Method to get all comments for attraction
     public List<Comment> getCommentsForAttraction(int attractionId) {
         List<Comment> comments = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
