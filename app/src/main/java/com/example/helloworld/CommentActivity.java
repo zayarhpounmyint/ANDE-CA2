@@ -38,11 +38,6 @@ public class CommentActivity extends AppCompatActivity {
         // Initialize session manager
         sessionManager = new SessionManager(this);
 
-        Button backButton = findViewById(R.id.backBtn);
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(CommentActivity.this, AttractionDetailsActivity.class);
-            startActivity(intent);
-        });
 
         recyclerViewComments = findViewById(R.id.recyclerViewComments);
         commentInput = findViewById(R.id.commentInput);
@@ -67,6 +62,13 @@ public class CommentActivity extends AppCompatActivity {
                 comments.add(comment);
                 commentAdapter.notifyItemInserted(comments.size() - 1);
             }
+        });
+
+        Button backButton = findViewById(R.id.backBtn);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(CommentActivity.this, AttractionDetailsActivity.class);
+            intent.putExtra("id", attractionId);
+            startActivity(intent);
         });
     }
 

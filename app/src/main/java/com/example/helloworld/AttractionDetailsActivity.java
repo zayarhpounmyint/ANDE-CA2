@@ -1,6 +1,7 @@
 package com.example.helloworld;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -68,10 +69,11 @@ public class AttractionDetailsActivity extends AppCompatActivity {
         ratingBar.setRating(starRating);
 
         TextView textDetailsLocation = findViewById(R.id.textDetailsLocation);
-        textDetailsLocation.setText(location);
+        textDetailsLocation.setText("Location: " + location);
 
         TextView textDetailsWebsite = findViewById(R.id.textDetailsWebsite);
         textDetailsWebsite.setText(website);
+        textDetailsWebsite.setTextColor(Color.parseColor("#16b1e9"));
 
 
         //add to list button

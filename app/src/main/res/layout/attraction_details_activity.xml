@@ -31,22 +31,22 @@
 
     <TextView
         android:id="@+id/textDetailsTitle"
-        android:layout_width="294dp"
-        android:layout_height="56dp"
+        android:layout_width="299dp"
+        android:layout_height="33dp"
         android:text="Attraction Title"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintVertical_bias="0.514" />
+
 
     <TextView
         android:id="@+id/textDetailsDesc"
-        android:layout_width="294dp"
-        android:layout_height="62dp"
+        android:layout_width="293dp"
+        android:layout_height="51dp"
         android:text="Attraction Description"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -55,8 +55,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.633" />
-
+        app:layout_constraintVertical_bias="0.606" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -68,10 +67,10 @@
         android:stepSize="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.217"
+        app:layout_constraintHorizontal_bias="0.256"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.704" />
 
     <TextView
         android:id="@+id/textDetailsLocation"
@@ -82,10 +81,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.787" />
+        app:layout_constraintVertical_bias="0.783" />
 
     <TextView
         android:id="@+id/textDetailsWebsite"
@@ -96,10 +95,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.849" />
+        app:layout_constraintVertical_bias="0.854" />
 
     <Button
         android:id="@+id/addToPlanBtn"
