@@ -71,8 +71,15 @@ public class AddToPlanActivity extends AppCompatActivity {
                             .setPositiveButton("OK", null)
                             .show();
                 } else {
-                    // Proceed with confirming plan
-                    // Your code for what happens after all selections are confirmed
+                    // db function here
+                    Log.d("ConfirmPlan", title);
+                    Log.d("ConfirmPlan", category);
+                    Log.d("ConfirmPlan", location);
+                    Log.d("ConfirmPlan", "Start Date: " + btnStartDate.getText().toString());
+                    Log.d("ConfirmPlan", "Start Date: " + btnStartDate.getText().toString());
+                    Log.d("ConfirmPlan", "End Date: " + btnEndDate.getText().toString());
+                    Log.d("ConfirmPlan", "Start Time: " + btnStartTime.getText().toString());
+                    Log.d("ConfirmPlan", "End Time: " + btnEndTime.getText().toString());
                 }
             }
         });
@@ -91,7 +98,8 @@ public class AddToPlanActivity extends AppCompatActivity {
                         (view, year1, monthOfYear, dayOfMonth) -> {
                             String selectedDate = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year1;
                             button.setText(selectedDate);
-                            Log.d("DatePicker", button.getId() == R.id.btnStartDatePicker ? "From Date: " : "To Date: " + selectedDate);
+                            Log.d("DatePicker", (button.getId() == R.id.btnStartDatePicker ? "From Date: " : "To Date: ") + selectedDate);
+
                         }, year, month, day);
                 datePickerDialog.show();
             }
@@ -110,7 +118,8 @@ public class AddToPlanActivity extends AppCompatActivity {
                         (view, hourOfDay, minute1) -> {
                             String selectedTime = hourOfDay + ":" + minute1;
                             button.setText(selectedTime);
-                            Log.d("TimePicker", button.getId() == R.id.btnStartTimePicker ? "From Time: " : "To Time: " + selectedTime);
+                            Log.d("TimePicker", (button.getId() == R.id.btnStartTimePicker ? "From Time: " : "To Time: ") + selectedTime);
+
                         }, hour, minute, false);
                 timePickerDialog.show();
             }
