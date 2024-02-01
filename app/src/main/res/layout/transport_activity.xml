@@ -46,7 +46,7 @@
 
 
 
-    <!-- Add a RecyclerView for the list -->
+    <!-- RecyclerView for the list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
