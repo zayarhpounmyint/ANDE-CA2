@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email, password;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
+                String userimageurl = "https://firebasestorage.googleapis.com/v0/b/go-travel-e20ce.appspot.com/o/th%20(1).jpeg?alt=media&token=fd79e233-24fa-43f3-a923-734645c67ce6";
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(RegisterActivity.this, "Enter Email", Toast.LENGTH_SHORT).show();
@@ -91,6 +92,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     user.setUsername(editTextUsername.getText().toString());
                                     user.setUseremail(editTextEmail.getText().toString());
                                     user.setUserphone(Integer.parseInt(editTextPhNumber.getText().toString()));
+                                    user.setUserimageurl(userimageurl);
+
 
                                     db.collection("users")
                                             .document(firebaseUser.getUid())
@@ -108,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                 }
                                             });
 
-                                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                                    startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                                 } else {
 
                                     Toast.makeText(RegisterActivity.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
